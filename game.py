@@ -33,7 +33,7 @@ while True:
         sys.exit()
 
     # Clear the screen
-    screen.fill((255, 255, 255))
+    screen.fill((50, 100, 50))
 
     # Draw the square
     player.draw(screen)

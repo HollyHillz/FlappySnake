@@ -1,0 +1,15 @@
+*create obsticle class
+*create functions that draw and update it, like the player class
+*make an obsticle it scroll o nthe screen
+*generate more obsticles randomly
+
+*print the score on the screen
+
+*investigate if sprites are easy to implement or if we should stay with rectangles
+
+*make a trailing effect on the player to resemble Snake
+
+*add a Food class, inspired by the Player and Obsticle classes, which also draws itself on the screen at random places
+
+*try adding sound effects
+

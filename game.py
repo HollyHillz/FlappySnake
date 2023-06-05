@@ -1,17 +1,37 @@
 import pygame
 import sys
 from Player import Player
+import screensetup as ss
+#import Obsticlez as obz
+
+class Obsticle:
+    def __init__(self, x, H, topOrBottom):
+        self.width = 50
+        self.height = H
+        self.x = x
+        self.speed=5
+        self.toporbottom = topOrBottom
+
+    def update(self):
+        self.x -= self.speed
+
+    def draw(self, screen):
+        if self.toporbottom == "top":
+            pygame.draw.rect(screen, (0, 0, 0), (self.x, 0, self.width, self.height))
+        elif self.toporbottom == "bottom":
+            pygame.draw.rect(screen, (0, 0, 0), (self.x, ss.screen_height - self.height, self.width, ss.screen_height))
+        elif self.toporbottom == "floating":
+            pygame.draw.rect(screen, (0, 0, 0), (self.x, self.height, 50, 50))
+
+
 
 # Initialize Pygame
 pygame.init()
 
-# Set up the screen
-screen_width, screen_height = 800, 600
-screen = pygame.display.set_mode((screen_width, screen_height))
-clock = pygame.time.Clock()
+# Set up the Player
+player = Player(ss.screen_width // 2, 300)
 
-# Set up the square
-player = Player(screen_width // 2, screen_height // 2)
+ob = Obsticle(ss.screen_width, 250, "bottom")
 
 # Main game loop
 while True:
@@ -24,20 +44,25 @@ while True:
             if event.key == pygame.K_SPACE:
                 player.jump()
 
-    # Update the square
+        
+
+    # Update the player
     player.update()
+    ob.update()
+
 
     # Check if the square has fallen below the screen
-    if player.is_off_screen(screen_height):
+    if player.is_off_screen(ss.screen_height):
         pygame.quit()
         sys.exit()
 
     # Clear the screen
-    screen.fill((50, 100, 50))
+    ss.screen.fill((50, 100, 50))
 
     # Draw the square
-    player.draw(screen)
+    player.draw(ss.screen)
+    ob.draw(ss.screen)
 
     # Update the screen
     pygame.display.flip()
-    clock.tick(60)
+    ss.clock.tick(60)

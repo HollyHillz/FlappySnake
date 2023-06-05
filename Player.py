@@ -16,7 +16,7 @@ class Player:
         self.y += self.dy
 
     def is_off_screen(self, screen_height):
-        return self.y > screen_height
+        return self.y > screen_height or self.y < 0
 
     def draw(self, screen):
         pygame.draw.rect(screen, (0, 0, 0), (self.x, self.y, self.size, self.size))
